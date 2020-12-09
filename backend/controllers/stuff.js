@@ -15,8 +15,8 @@ exports.createSauces = (req, res, next) => {
 };
 
 exports.saucesIdLike = (req, res, next) => {
-    const sauce = new Sauce({
-        ...req.body
+    const sauce = Sauce({
+        ...req.usersLiked
     });
     sauce.save()
         .then(() => res.status(201).json({message: "J'aime"}))

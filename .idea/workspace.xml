@@ -23,7 +23,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/controllers/stuff.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/controllers/stuff.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/models/sauce.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/sauce.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/models/thing.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +65,8 @@
       <updated>1607438369908</updated>
       <workItem from="1607438374176" duration="720000" />
       <workItem from="1607440065783" duration="838000" />
-      <workItem from="1607457277184" duration="5789000" />
+      <workItem from="1607457277184" duration="6228000" />
+      <workItem from="1607534597145" duration="4266000" />
     </task>
     <servers />
   </component>
@@ -83,6 +83,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="254" y="85" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607440615867">

@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const sauceSchema = mongoose.Schema({
-    _id: mongoose.ObjectId,
     name: String,
     manufacturer: String,
     description: String,
