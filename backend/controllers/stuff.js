@@ -15,8 +15,21 @@ exports.createSauces = (req, res, next) => {
 };
 
 exports.saucesIdLike = (req, res, next) => {
-
-};
+    const like = req.params.likes;
+    const dislike = req.params.dislikes;
+    if ( like === true){
+        res.params.usersLiked + 1;
+    } else if (dislike === true){
+        res.params.usersDisliked + 1;
+    } else {
+        function err(){
+            res.status(400).json({error: 'Requete impossible!'})
+        }
+    }
+    Sauce.findOne({likes: req.params.likes })
+        .then((sauce) => {res.status(200).json(sauce)})
+        .catch((error) => {res.status(404).json({ error: error })});
+    };
 
 exports.getAllSauces = (req, res, next) => {
     Sauce.find()
