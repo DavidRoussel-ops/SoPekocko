@@ -15,12 +15,7 @@ exports.createSauces = (req, res, next) => {
 };
 
 exports.saucesIdLike = (req, res, next) => {
-    const sauce = Sauce({
-        ...req.usersLiked
-    });
-    sauce.save()
-        .then(() => res.status(201).json({message: "J'aime"}))
-        .catch(error => res.status(400).json({error}));
+
 };
 
 exports.getAllSauces = (req, res, next) => {
