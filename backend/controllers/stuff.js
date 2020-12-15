@@ -10,26 +10,47 @@ exports.createSauces = (req, res, next) => {
         imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     });
     sauce.save()
-        .then(() => res.status(201).json({message: 'Objet enregistré'}))
+        .then(() => res.status(201).json({Sauce}))
         .catch(error => res.status(400).json({error: error}));
 };
 
 exports.saucesIdLike = (req, res, next) => {
-    console.log("Nombre de like", req.params.likes);
+    /*const userLike = req.body.userId;
+    console.log("L'utilisateur qui veut liké est ", userLike);
+    const isLike = req.body.like;
+    console.log('Nombre de like ', isLike);
+    if (isLike === 1){
+        req.body.usersLiked.append(userLike)
+    }
+    if (isLike === 0){
+        req.body.usersLiked.delete(userLike)
+    }
+    delete userLike._id;
+    const likeIt = new Sauce({
+        userId: userLike,
+        like: isLike
+    });
+    likeIt.save()
+        .then(() => res.status(201).json({message: likeIt}))
+        .catch(error => res.status(400).json({error: error}));*/
+    console.log("Nombre de like", req.body.like);
     const userId = req.body.userId;
-    const sauceId = req.body.id;
-    const isLike = req.params.likes;
-    Sauce.findOne({_id: sauceId })
+
+    const isLike = req.body.like;
+    Sauce.findOne({
+        userId: userId,
+        like: isLike
+    })
         .then((sauce) => {
             if (isLike === 1) {
-                console.log("ajoiut d'un like")
+                console.log("ajout d'un like")
                 sauce.usersLiked.append(userId);
             }
             if (isLike === 0){
                 console.log("on enleve le like")
-                sauce.usersLiked.delete(userId);
+                sauce.usersLiked.remove(userId);
             }
-            Sauce.updateOne({ _id: sauceId}, {...sauce})
+            Sauce.save({ userId: userId}, {...sauce})
                 .then(() => res.status(200).json({ message: (sauce.usersLiked)}))
                 .catch(error => res.status(400).json({ error: error }));
         })
