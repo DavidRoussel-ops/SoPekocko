@@ -4,7 +4,7 @@ const fs = require('fs');
 
 exports.createSauces = (req, res, next) => {
     const sauceObject = JSON.parse(req.body.sauce);
-    delete sauceObject._id;
+    delete sauceObject.id;
     const sauce = new Sauce({
         ...sauceObject,
         imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
@@ -19,12 +19,7 @@ exports.saucesIdLike = (req, res, next) => {
     console.log("L'utilisateur qui veut liké est ", userLike);
     const isLike = req.body.like;
     console.log('Nombre de like ', isLike);
-    if (isLike === 1){
-        req.body.usersLiked.append(userLike)
-    }
-    if (isLike === 0){
-        req.body.usersLiked.delete(userLike)
-    }
+
     delete userLike._id;
     const likeIt = new Sauce({
         userId: userLike,
@@ -33,11 +28,22 @@ exports.saucesIdLike = (req, res, next) => {
     likeIt.save()
         .then(() => res.status(201).json({message: likeIt}))
         .catch(error => res.status(400).json({error: error}));*/
-    console.log("Nombre de like", req.body.like);
     const userId = req.body.userId;
-
+    console.log("l'utilisateur est ", userId)
     const isLike = req.body.like;
-    Sauce.findOne({
+    console.log("Le nombre de like est de ", isLike);
+    const sauceId = req.params.id;
+    console.log("L'identifiant de la sauce est le ", sauceId);
+    if (isLike === 1){
+        req.body.usersLiked.append(userId)
+    }
+    if (isLike === 0){
+        req.body.usersLiked.delete(userId)
+    }
+    Sauce.save(res.params.usersLiked[userId])
+        .then(() => res.status(200).json({usersLiked: userId}))
+        .catch(error => res.status(400).json({ error: error}));
+    /*Sauce.findOne({
         userId: userId,
         like: isLike
     })
@@ -54,7 +60,7 @@ exports.saucesIdLike = (req, res, next) => {
                 .then(() => res.status(200).json({ message: (sauce.usersLiked)}))
                 .catch(error => res.status(400).json({ error: error }));
         })
-        .catch((error) => {res.status(404).json({ error: error })});
+        .catch((error) => {res.status(404).json({ error: error })});*/
     };
 
 exports.getAllSauces = (req, res, next) => {
