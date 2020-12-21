@@ -22,6 +22,10 @@
     <list default="true" id="60c28770-dc54-4bad-accc-d2f93802a351" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/controllers/stuff.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/controllers/stuff.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/images/curry.jpeg1608224825676.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/images/piment.jpg1608223407952.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/images/téléchargement.jpg1608224537673.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/models/sauce.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/sauce.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +83,9 @@
       <workItem from="1608066617693" duration="3614000" />
       <workItem from="1608150362176" duration="798000" />
       <workItem from="1608216774211" duration="6333000" />
-      <workItem from="1608303567944" duration="5405000" />
+      <workItem from="1608303567944" duration="6133000" />
+      <workItem from="1608558533425" duration="5640000" />
+      <workItem from="1608577522364" duration="4874000" />
     </task>
     <servers />
   </component>
