@@ -23,13 +23,20 @@ exports.saucesIdLike = (req, res, next) => {
     console.log("La sauce à " + likeSauce + " like !");
     const userLike = req.params.usersLiked;
     console.log("Le tableau des likes contient ", userLike);
-    Sauce.findOneAndUpdate({ _id : userId, like : likeSauce})
-    if (userId === true && likeSauce === 1){
-        userLike.push({userId : userId, likes : likeSauce});
+    const userDislike = req.params.usersDisliked;
+    console.log("Le tableau des dislikes contient ", userDislike);
+    Sauce.findOne({ _id: sauceId })
+    if (likeSauce === 1){
+        Sauce.updateOne({ usersLiked : userId })
+            .then(() => res.status(200).json({ message : "Sauce liké !"}))
+            .catch(error => res.status(400).json({ error }))
+    } if (likeSauce === 0){
+        Sauce.removeItem({ usersLiked : userId })
+            .then(() => res.status(200).json({ message : "Sauce non liké"}))
+            .catch(error => res.status(400).json({ error }))
     }
-    Sauce.usersLiked
-        .then(() => res.status(200).json({ message : "Like !"}))
-        .catch(error => res.status(400).json({ error }))
+
+
 
 
 
