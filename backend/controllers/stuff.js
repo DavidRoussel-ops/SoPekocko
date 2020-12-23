@@ -21,6 +21,8 @@ exports.saucesIdLike = (req, res, next) => {
     console.log("L'identifiant de la sauce est le ", sauceId);
     const likeSauce = req.body.like;
     console.log("La sauce à " + likeSauce + " like !");
+    const dislikeSauce = req.body.dislikes;
+    console.log("La sauce à " + dislikeSauce + " dislike !")
     const userLike = req.params.usersLiked;
     console.log("Le tableau des likes contient ", userLike);
     const userDislike = req.params.usersDisliked;
@@ -28,11 +30,23 @@ exports.saucesIdLike = (req, res, next) => {
     Sauce.findOne({ _id: sauceId })
     if (likeSauce === 1){
         Sauce.updateOne({ usersLiked : userId })
-            .then(() => res.status(200).json({ message : "Sauce liké !"}))
+            .then(() => res.status(200).json({ message : "Sauce liké ! "}))
             .catch(error => res.status(400).json({ error }))
-    } if (likeSauce === 0){
-        Sauce.removeItem({ usersLiked : userId })
-            .then(() => res.status(200).json({ message : "Sauce non liké"}))
+    } if (likeSauce === -1){
+        Sauce.updateOne({ usersDisliked : userId })
+            .then(() => res.status(200).json({ message : "Sauce disliké ! "}))
+            .catch(error => res.status(400).json({ error }))
+    }
+    Sauce.findOne({ _id : sauceId })
+    if (likeSauce === 0){
+        Sauce.deleteOne({ usersLiked : userId })
+            .then(() => res.status(200).json({ message : "Sauce non liké ! " }))
+            .catch(error => res.status(400).json({ error }))
+    }
+    Sauce.findOne({ _id : sauceId })
+    if (likeSauce === 0){
+        Sauce.deleteOne({ usersDisliked : userId })
+            .then(() => res.status(200).json({ message : "Sauce non disliked ! " }))
             .catch(error => res.status(400).json({ error }))
     }
 
