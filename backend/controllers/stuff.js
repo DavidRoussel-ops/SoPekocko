@@ -26,19 +26,22 @@ exports.saucesIdLike = (req, res, next) => {
             if (likeSauce === 0) {
                 if (sauce.usersLiked.includes(userId)) {
                     Sauce.updateOne(
-                        {$pull : {usersLiked: userId}})
-                        .then(() => res.status(200).json({message: "Sauce non liké ! "}))
+                        { _id : sauceId },
+                        {$pull : {usersLiked: userId}, $inc : { likes: -1 }})
+                        .then(() => res.status(200).json({ message: "Sauce non liké ! " }))
                         .catch(error => res.status(400).json({error}))
                 }
                 if (sauce.usersDisliked.includes(userId)) {
                     Sauce.updateOne(
-                        {$pull : {usersDisliked: userId}})
+                        { _id : sauceId },
+                        {$pull : {usersDisliked: userId}, $inc : { dislikes: 1 }})
                         .then(() => res.status(200).json({message: "Sauce non disliké ! "}))
                         .catch(error => res.status(400).json({error}))
                 }
             }
             if (likeSauce === 1) {
                     Sauce.updateOne(
+                        { _id : sauceId },
                         {$addToSet : {usersLiked: userId}, $inc : {likes : likeSauce}}
                     )
                         .then(() => res.status(200).json({message: "Sauce liké ! "}))
@@ -46,12 +49,14 @@ exports.saucesIdLike = (req, res, next) => {
                 }
             if (likeSauce === -1) {
                     Sauce.updateOne(
+                        { _id : sauceId },
                         {$addToSet : {usersDisliked: userId}, $inc : {dislikes : likeSauce}}
                         )
                         .then(() => res.status(200).json({message: "Sauce disliké ! "}))
                         .catch(error => res.status(400).json({error}))
             }
         })
+        .catch(error => res.status(400).json({ error }))
 }
 
 
