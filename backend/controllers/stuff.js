@@ -22,27 +22,37 @@ exports.saucesIdLike = (req, res, next) => {
     const likeSauce = req.body.like;
     console.log("La sauce à " + likeSauce + " like !");
     Sauce.findOne({ _id: sauceId })
-    if (likeSauce === 0){
-        Sauce.updateOne({ usersLiked : " " })
-            .then(() => res.status(200).json({ message : "Sauce non liké ! " }))
-            .catch(error => res.status(400).json({ error }))
-    }
-    if (likeSauce === 0){
-        Sauce.updateOne({ usersDisliked : " " })
-            .then(() => res.status(200).json({ message : "Sauce non disliké ! " }))
-            .catch(error => res.status(400).json({ error }))
-    }
-    if (likeSauce === 1){
-        Sauce.updateOne({ usersLiked : userId })
-            .then(() => res.status(200).json({ message : "Sauce liké ! "}))
-            .catch(error => res.status(400).json({ error }))
-
-    } if (likeSauce === -1){
-        Sauce.updateOne({ usersDisliked : userId })
-            .then(() => res.status(200).json({ message : "Sauce disliké ! "}))
-            .catch(error => res.status(400).json({ error }))
-
-    }
+        .then((sauce) => {
+            if (likeSauce === 0) {
+                if (sauce.usersLiked.includes(userId)) {
+                    Sauce.updateOne(
+                        {$pull : {usersLiked: userId}})
+                        .then(() => res.status(200).json({message: "Sauce non liké ! "}))
+                        .catch(error => res.status(400).json({error}))
+                }
+                if (sauce.usersDisliked.includes(userId)) {
+                    Sauce.updateOne(
+                        {$pull : {usersDisliked: userId}})
+                        .then(() => res.status(200).json({message: "Sauce non disliké ! "}))
+                        .catch(error => res.status(400).json({error}))
+                }
+            }
+            if (likeSauce === 1) {
+                    Sauce.updateOne(
+                        {$addToSet : {usersLiked: userId}, $inc : {likes : likeSauce}}
+                    )
+                        .then(() => res.status(200).json({message: "Sauce liké ! "}))
+                        .catch(error => res.status(400).json({error}))
+                }
+            if (likeSauce === -1) {
+                    Sauce.updateOne(
+                        {$addToSet : {usersDisliked: userId}, $inc : {dislikes : likeSauce}}
+                        )
+                        .then(() => res.status(200).json({message: "Sauce disliké ! "}))
+                        .catch(error => res.status(400).json({error}))
+            }
+        })
+}
 
 
 
@@ -80,7 +90,6 @@ exports.saucesIdLike = (req, res, next) => {
             })
             .catch(error => res.status(400).json({error}));
     }*/
-};
     /*
     const sauceIsLiked = req.body.usersLiked;
     console.log("Voici ce qu'il y a dans le tableau like", sauceIsLiked);*/
