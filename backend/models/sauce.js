@@ -1,5 +1,7 @@
+//Constante qui appel mongoose.
 const mongoose = require('mongoose');
 
+//Constante qui donne le schema d'une sauce.
 const sauceSchema = mongoose.Schema({
     name: { type: String, required: true },
     manufacturer: { type: String, required: true },

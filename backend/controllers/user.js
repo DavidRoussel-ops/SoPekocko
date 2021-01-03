@@ -1,8 +1,12 @@
+//Constante qui appel bcrypt.
 const bcrypt = require('bcrypt');
+//Constante qui appel jsonwebtoken
 const jwt = require('jsonwebtoken');
 
+//Constante qui appel le model d'utilisateur.
 const User = require('../models/User');
 
+//Enregistrement d'un utilisateur.
 exports.signup = (req, res, next) => {
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
@@ -10,15 +14,14 @@ exports.signup = (req, res, next) => {
                 email: req.body.email,
                 password: hash
             })
-console.log('test')
             user.save()
                 .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
                 .catch(error => res.status(400).json({ error }));
         })
         .catch(error => res.status(500).json({ error }));
-    console.log('test2')
 }
 
+//Connexion d'un utilisateur existant.
 exports.login = (req, res, next) => {
     User.findOne({ email: req.body.email })
         .then(user => {

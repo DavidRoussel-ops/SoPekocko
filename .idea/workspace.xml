@@ -21,8 +21,18 @@
   <component name="ChangeListManager">
     <list default="true" id="60c28770-dc54-4bad-accc-d2f93802a351" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/controllers/stuff.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/controllers/stuff.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/images/ketchup.jpg1609277632993.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/controllers/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/controllers/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/images/ketchup.jpg1609277401090.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/images/ketchup.jpg1609282049092.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/middleware/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/middleware/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/middleware/multer-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/middleware/multer-config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/models/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/User.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/models/sauce.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/sauce.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/routes/stuff.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/stuff.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/routes/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +97,8 @@
       <workItem from="1608739216124" duration="7122000" />
       <workItem from="1608986431994" duration="7859000" />
       <workItem from="1609162577951" duration="1457000" />
-      <workItem from="1609263983927" duration="14393000" />
+      <workItem from="1609263983927" duration="15599000" />
+      <workItem from="1609704250077" duration="3001000" />
     </task>
     <servers />
   </component>

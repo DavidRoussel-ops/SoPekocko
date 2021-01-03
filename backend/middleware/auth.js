@@ -1,5 +1,7 @@
+//Constante qui appel jsonwebtoken.
 const jwt = require('jsonwebtoken');
 
+//Vérification du token utilisateur.
 module.exports = (req, res, next) => {
     try {
         const token = req.headers.authorization.split(' ')[1];

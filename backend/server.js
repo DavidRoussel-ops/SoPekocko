@@ -1,6 +1,9 @@
+//Constante qui appel la méthod http.
 const http = require('http');
+//Constante qui appel l'application.
 const app = require('./app');
 
+//Constante qui vérifie le port.
 const normalizePort = val => {
     const port = parseInt(val, 10);
 
@@ -13,9 +16,11 @@ const normalizePort = val => {
     return false;
 };
 
+//Constante qui envoie sur le port 3000.
 const port = normalizePort(process.env.PORT || '3000')
 app.set('port', port);
 
+//Constante qui vérifie les erreurs.
 const errorHandler = error => {
     if (error.syscall !== 'listen'){
         throw error;
@@ -36,6 +41,7 @@ const errorHandler = error => {
     }
 };
 
+//Constante qui crée le server.
 const server = http.createServer(app);
 
 server.on('error', errorHandler);

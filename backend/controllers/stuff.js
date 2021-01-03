@@ -1,7 +1,9 @@
+//Constante qui appel le model des sauces.
 const Sauce = require('../models/sauce');
+//Constante qui appel file system.
 const fs = require('fs');
 
-
+//Création d'une sauce.
 exports.createSauces = (req, res, next) => {
     const sauceObject = JSON.parse(req.body.sauce);
     delete sauceObject.id;
@@ -14,13 +16,11 @@ exports.createSauces = (req, res, next) => {
         .catch(error => res.status(400).json({error: error}));
 };
 
+//Ajout d'un like/dislike et enregistrement du userId dans le tableau adequate.
 exports.saucesIdLike = (req, res, next) => {
     const userId = req.body.userId;
-    console.log("l'utilisateur est ", userId)
     const sauceId = req.params.id;
-    console.log("L'identifiant de la sauce est le ", sauceId);
     const likeSauce = req.body.like;
-    console.log("La sauce à " + likeSauce + " like !");
     Sauce.findOne({ _id: sauceId })
         .then((sauce) => {
             if (likeSauce === 0) {
@@ -59,58 +59,21 @@ exports.saucesIdLike = (req, res, next) => {
         .catch(error => res.status(400).json({ error }))
 }
 
-
-
-
-
-
-
-    /*if (likeSauce === 0 && typeof likeSauce === "number") {
-        Sauce.findOne({_id: sauceId})
-            .then((sauce) => {
-                let likeValue = 0;
-                let pullType = "";
-                let message = "toto";
-                if (sauce.usersLiked.includes(userId)) {
-                    likeValue = -1;
-                    pullType = "usersLiked";
-                    message = "like retirer"
-                }
-                else if (sauce.usersLiked.includes(userId)) {
-                    likeValue = 1;
-                    pullType = "usersDisliked";
-                    message = "Dislike retirer"
-                }
-                    Sauce.updateOne(
-                        {
-                            _id: sauceId,
-                        },
-                        {
-                            $pull: { pullType : userId},
-                            $inc: {likes: likeValue},
-                        }
-                    )
-                        .then(() => res.status(200).json({message: "Like supprimer ! "}))
-                        .catch((error) => res.status(400).json({error}))
-            })
-            .catch(error => res.status(400).json({error}));
-    }*/
-    /*
-    const sauceIsLiked = req.body.usersLiked;
-    console.log("Voici ce qu'il y a dans le tableau like", sauceIsLiked);*/
-
+//Affichage des sauces enregistrer.
 exports.getAllSauces = (req, res, next) => {
     Sauce.find()
         .then((sauces) => {res.status(200).json(sauces)})
         .catch((error) => {res.status(400).json({ error: error })});
 };
 
+//Affichage d'une sauce grace à son identifiant.
 exports.getOneSauces = (req, res, next) => {
     Sauce.findOne({_id: req.params.id })
         .then((sauce) => {res.status(200).json(sauce)})
         .catch((error) => {res.status(404).json({ error: error })});
 };
 
+//Modification d'une sauce.
 exports.updateSauces = (req, res, next) => {
     const sauceObject = req.file ?
         {
@@ -122,6 +85,7 @@ exports.updateSauces = (req, res, next) => {
         .catch(error => res.status(400).json({ error }));
 };
 
+//Suppression d'une sauce.
 exports.deleteSauces = (req, res, next) => {
     Sauce.findOne({ _id: req.params.id })
         .then(sauce => {
